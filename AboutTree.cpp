@@ -1,19 +1,30 @@
 #include <iostream>
 #include <cstdlib>
-class node
+class node//binary
 {
     public:
     node *Lchild,*Rchild,*parent;
     int value;
+    void link(node *c,bool LR)
+    {
+        node*p = this;
+        if(LR ==0)
+        {
+            p->Lchild = c;
+            c->parent = p;
+        }
+        else
+        {
+            p->Rchild = c;
+            c->parent = p;
+        }
+    }
 };
 class tree
 {
     public:
     node *root;
    //0 is left
-    
-    
-    
     void rotate(node *x,bool LR)
     {
         if(LR ==0)
@@ -58,9 +69,10 @@ int main()
     n2.parent = &n1;
     n3.parent = &n1;
     n4.parent = &n3;
-    n5.parent = &n3;
+    //n5.parent = &n3;
+    n3.link(&n5,1);
     T.rotate(&n1,0);
-    std::cout<<T.root->Lchild->value;
+    std::cout<<n3.Rchild->value;
     //std::cout <<T.root->Lchild->Rchild->Rchild->parent->value  << std::endl;
     return 0;
 }
