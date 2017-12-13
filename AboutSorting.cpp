@@ -11,6 +11,43 @@ void printa(int*a,int n)
     }
     std::cout<<std::endl;
 }
+
+class QuickSort
+{
+    public:
+    int partition(int *a,int p,int r)//p,r is array index
+    {
+        
+        int i = p,j = p;
+        int tmp;
+        for(;j<=r-1;j++)
+        {
+            if(a[j]<=a[r])
+            {
+                tmp = a[j];
+                a[j] = a[i];
+                a[i] = tmp;
+                i++;
+            }
+        }
+        tmp = a[i];
+        a[i] = a[r];
+        a[r] = tmp;
+        return i;
+    }
+    void quicksort(int *a,int fi,int li)//li is last index;fi first
+    {
+        if(fi<li)
+        { 
+            int i;
+            i = partition(a,fi,li);
+            quicksort(a,fi,i-1);
+            quicksort(a,i+1,li);
+        }
+    }
+};
+
+
 class heap
 {
     public:
@@ -53,7 +90,7 @@ class heap
 
 int main()
 {
-    heap H;
+   /* heap H;
     int a[11] = {10,4,1,3,2,16,9,10,14,8,7};//first element is the size
     printa(&a[1],10);
     H.heapify(a,2,10);
@@ -65,6 +102,13 @@ int main()
     H.heapsort(&a[0],10);
     
     printa(&a[1],10);
+    return 0;*/
+    
+    int a[11] = {10,4,1,3,2,16,9,10,14,8,7};
+    QuickSort q;
+    printa(&a[0],11);
+    q.quicksort(a,0,10);
+    printa(&a[0],11);
     return 0;
 }
 
