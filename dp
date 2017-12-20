@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdlib>
+const int   n = 6;//6 matrices
+int S[n+1][n+1];
+
+void print(int i,int j)//from Ai to Aj
+{
+        int l = j-i+1;
+        int k;
+        if(l <=2)
+            return;
+        k = S[i][j];
+        std::cout<<i<< k<<j<<std::endl;
+        print(i,k);
+        print(k+1,j);
+}
+int main()
+{   
+   
+    int   M[n+1][n+1];
+    int   C[n+1]={4,2,3,1,2,2,3};
+    int  i,j,k,l,m;
+    //A1--A4,C0--C4
+    for(i=1;i<=n;i++)
+    {
+        M[i][i] = 0;
+    }
+    for(l = 2;l<=n;l++)//l is the number of matrix
+    {
+        for(i = 1;i<=n-l+1;i++)
+        {
+            j = i+l-1;
+            M[i][j] = 65533;
+            for(k = i;k<=j-1;k++)
+            {
+                m = M[i][k]+M[k+1][j]+C[i-1]*C[j]*C[k];
+                if(m<M[i][j])
+                {
+                    M[i][j] = m;
+                    S[i][j] = k;
+                }
+            }
+         }
+    }
+    print(1,n);
+    //std::cout<<S[1][4];
+}
