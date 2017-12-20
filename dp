@@ -1,3 +1,4 @@
+//Matrix multiplication
 #include <iostream>
 #include <cstdlib>
 const int   n = 6;//6 matrices
